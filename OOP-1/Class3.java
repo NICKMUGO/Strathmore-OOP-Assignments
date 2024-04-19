@@ -2,7 +2,7 @@ import java.util.*;
 
 public class Class3 {
     public static void main(String args []) {
-        Scanner input = new Scanner (System.in) ;
+        Scanner input = new Scanner (System.in);
         int x;
         try{
         x = input.nextInt ();
