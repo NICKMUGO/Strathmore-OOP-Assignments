@@ -5,16 +5,17 @@ import java.sql.SQLException;
 
 
 public class Singleton{
-    private static Singleton instance;
+    private static volatile Singleton instance;
     private Connection connection;
 
 
-    private static final String URL="";
-    private static final String USERNAME="username";
+    private static final String URL="jdbc:mysql://localhost:3306/dbbooks";
+    private static final String USERNAME="root";
     private static final String PASSWORD="";
 
     private Singleton(){
         try{
+            // Class.forName("com.mysql.cj.jdbc.Driver");
             connection= DriverManager.getConnection(URL, USERNAME, PASSWORD);
         }
         catch( SQLException e){
@@ -54,5 +55,14 @@ public class Singleton{
         Singleton db = Singleton.getInstance();
         Connection connection = db.getConnection();
         System.out.println(connection);
+
+        if (connection != null){
+            System.out.println("Connection successful: " + connection);
+
+        }else {
+            System.out.println("Connection failed");
+        }
+
+        db.closeConnection();
     }
 }
